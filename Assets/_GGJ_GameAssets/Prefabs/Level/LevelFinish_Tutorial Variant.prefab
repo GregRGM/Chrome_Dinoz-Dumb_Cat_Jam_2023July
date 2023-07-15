@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8783858247599999062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 325175955, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614129567215107216, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 763892590979946351, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334849129637432839, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e35dad767e2b26643abe3168f3d5fe13, type: 2}
+    - target: {fileID: 2910742865951454418, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020774691616343931, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Name
+      value: LevelFinish_Tutorial Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020774691616343931, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116347060069629419, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281783984315362865, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3540994078740907730, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+--- !u!224 &1605059072875783473 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8043666637432434023, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+  m_PrefabInstance: {fileID: 8783858247599999062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2680645184303976249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6689279339308615535, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+  m_PrefabInstance: {fileID: 8783858247599999062}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &3172241822318362886 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6188114838556363088, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+  m_PrefabInstance: {fileID: 8783858247599999062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5343928435221598536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3733477565892614430, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+  m_PrefabInstance: {fileID: 8783858247599999062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5768400950991327021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3020774691616343931, guid: 54ad079c18c4d7249acc87161d44ff6d, type: 3}
+  m_PrefabInstance: {fileID: 8783858247599999062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &460609386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768400950991327021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57712053d358ca34d9d11f0166ebb3dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: {fileID: 11400000, guid: fe434f7663c01454395f1aefb8bd46f9, type: 2}
+  nextLevelConfig: {fileID: 11400000, guid: 6941ca7c52fb76946918c8a3bcc86fa7, type: 2}
+  levelToLoadString: TitleScreen
+  completionTime: {fileID: 2680645184303976249}
+  canvasObject: {fileID: 5343928435221598536}
+  gemFinishSlot: {fileID: 9143714518170744904, guid: e176e1f79be5d9c4585ea03d17b6ee00, type: 3}
+  gemLayoutGroupTransform: {fileID: 1605059072875783473}
+  acquiredGemColorBG: {r: 1, g: 0.5254902, b: 0.18431373, a: 1}
+  audioSource: {fileID: 3172241822318362886}
+  victoryClip: {fileID: 8300000, guid: 32fa0de6b27c6814d94b97b0b96c50ee, type: 3}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31176e6b7285fa8459180ce86eb0500a, type: 3}
+  m_Name: Etherblight
+  m_EditorClassIdentifier: 
+  realmName: Etherblight
+  levels:
+  - {fileID: 11400000, guid: ac78a65471a9d88489bb8479e15bd83a, type: 2}
+  - {fileID: 11400000, guid: f5b1800a25409814bb1455f8eaa034da, type: 2}
+  - {fileID: 11400000, guid: 0fa243578ce3fe848b170114a1b46df0, type: 2}
+  - {fileID: 11400000, guid: 84bd5629097cf41429362efa0886a7d0, type: 2}
