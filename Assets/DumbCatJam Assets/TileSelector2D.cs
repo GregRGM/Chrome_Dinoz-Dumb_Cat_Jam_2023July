@@ -32,15 +32,15 @@ public class TileSelector2D : MonoBehaviour
     private void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
     }
-    void OnDelta(InputValue value)
+    void OnPosition(InputValue value)
     {
         if (!playerMovement.GetIsAlive()) { return; }
         worldPoint = Camera.current.ScreenToWorldPoint(value.Get<Vector2>());
 
-        Debug.Log("Delta: " + value.Get<Vector2>());
+        Debug.Log("Position: " + value.Get<Vector2>());
     }
 
-    void OnFire(InputValue value)
+    void OnClick(InputValue value)
     {
         if (!playerMovement.GetIsAlive()) { return; }
         var tpos = tileMap.WorldToCell(worldPoint);
