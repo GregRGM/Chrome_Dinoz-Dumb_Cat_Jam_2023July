@@ -31524,11 +31524,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.508686
+      value: -11.515162
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06361675
+      value: 0.06361532
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397569, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: orthographic size
@@ -31637,6 +31637,18 @@ PrefabInstance:
       propertyPath: tileMap
       value: 
       objectReference: {fileID: 898201166}
+    - target: {fileID: 5235568052084242326, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
+      propertyPath: wallTileMap
+      value: 
+      objectReference: {fileID: 898201166}
+    - target: {fileID: 5235568052084242326, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
+      propertyPath: spikeTileMap
+      value: 
+      objectReference: {fileID: 1272547425}
+    - target: {fileID: 5235568052084242326, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
+      propertyPath: bounceTileMap
+      value: 
+      objectReference: {fileID: 323551580}
     - target: {fileID: 5235568052084242326, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
       propertyPath: playerCameraFollow
       value: 

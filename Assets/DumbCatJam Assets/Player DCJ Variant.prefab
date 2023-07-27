@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559544189432440646, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
       propertyPath: m_Name
-      value: Ginger (Player) Variant
+      value: Player DCJ Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4275568711953936455, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
       propertyPath: crosshair
@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: lookAtObject
       value: 
       objectReference: {fileID: 8526408809239582963}
+    - target: {fileID: 5151869573568463848, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
+      objectReference: {fileID: 0}
     - target: {fileID: 5151869573568463848, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1
