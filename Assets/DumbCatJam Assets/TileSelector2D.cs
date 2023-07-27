@@ -27,10 +27,10 @@ public class TileSelector2D : MonoBehaviour
     internal Vector3 aimDirection;
     internal float aimDistance = 1.0f;
 
-    [SerializeField] Tilemap tileMap;
+    [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap;
 
     Vector2 worldPoint;
-    TileMode m_TileMode = TileMode.None;
+    [SerializeField] TileMode m_TileMode = TileMode.None;
     float mouseDistance;
 
     private void Start()
@@ -59,8 +59,22 @@ public class TileSelector2D : MonoBehaviour
 
         if(tile)
         {
-            Debug.Log("Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
-            DestroyTile();
+            Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
+            switch(m_TileMode)
+            {
+                case TileMode.Destroy:
+                    DestroyTile();
+                    break;
+                case TileMode.Bounce:
+                    ReplaceWithTile(bounceTileMap, tile);
+                    break;
+                case TileMode.Spike:
+                    ReplaceWithTile(spikeTileMap, tile);
+                    break;
+                case TileMode.Wall:
+                    ReplaceWithTile(wallTileMap, tile);
+                    break;
+            }
         }
     }
 
@@ -110,6 +124,26 @@ public class TileSelector2D : MonoBehaviour
         //tileMap.SetTile(tpos, null);
         //tileMap.SetTile(tpos, null);
     }
+
+    public void SetTileMode(int mode)
+    {
+        m_TileMode = (TileMode)mode;
+    }
+
+    void ReplaceWithTile(Tilemap _tilemap, TileBase tile)
+    {
+        var tpos = _tilemap.WorldToCell(worldPoint);
+
+        //if a tile from another tilemap is at the position, destroy it
+
+
+        //Destroy current tile at position
+        _tilemap.SetTile(tpos, null);
+        //Replace with new tile
+        _tilemap.SetTile(tpos, tile);
+    }
+
+
     /// <summary>
     /// Move the aiming crosshair based on aim angle
     /// </summary>
