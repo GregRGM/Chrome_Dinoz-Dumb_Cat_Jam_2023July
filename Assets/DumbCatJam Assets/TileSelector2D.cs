@@ -58,19 +58,33 @@ public class TileSelector2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        worldPoint = MoveMouseCursor();
         // worldPoint = Camera.main.ScreenToWorldPoint();
             
-        // var tpos = tileMap.WorldToCell(worldPoint);
+        var tpos = tileMap.WorldToCell(worldPoint);
 
-        // // Try to get a tile from cell position
-        // var tile = tileMap.GetTile(tpos);
+        // Try to get a tile from cell position
+        var tile = tileMap.GetTile(tpos);
 
-        // if(tile)
-        // {
-        //         Debug.Log("Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
-        //         DestroyTile();
-        // }
+        if(tile)
+        {
+                Debug.Log("Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
+                DestroyTile();
+        }        
+    }
 
+    Vector3 MoveMouseCursor()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 10;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        crosshair.transform.position = mouseWorldPos;
+
+        return mouseWorldPos;
+    }
+
+    void MouseAimOther()
+    {
         aimDirection = Vector3.zero;
         float aimAngle = 0;
         // var worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
