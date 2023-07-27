@@ -7,8 +7,17 @@ using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(PlayerMovement))]
 
+
 public class TileSelector2D : MonoBehaviour
 {
+    enum TileMode
+    {
+        Destroy,
+        Spike,
+        Wall,
+        Bounce, 
+        None
+    }
     public Transform crosshair;
     public PlayerMovement playerMovement;
     [SerializeField] Transform playerCameraFollow;
@@ -21,7 +30,7 @@ public class TileSelector2D : MonoBehaviour
     [SerializeField] Tilemap tileMap;
 
     Vector2 worldPoint;
-    
+    TileMode m_TileMode = TileMode.None;
     float mouseDistance;
 
     private void Start()
@@ -40,7 +49,7 @@ public class TileSelector2D : MonoBehaviour
         Debug.Log("Position: " + value.Get<Vector2>());
     }
 
-    void OnClick(InputValue value)
+    void OnFire(InputValue value)
     {
         if (!playerMovement.GetIsAlive()) { return; }
         var tpos = tileMap.WorldToCell(worldPoint);
@@ -59,18 +68,10 @@ public class TileSelector2D : MonoBehaviour
     void Update()
     {
         worldPoint = MoveMouseCursor();
-        // worldPoint = Camera.main.ScreenToWorldPoint();
-            
+        // worldPoint = Camera.main.ScreenToWorldPoint();            
         var tpos = tileMap.WorldToCell(worldPoint);
-
         // Try to get a tile from cell position
-        var tile = tileMap.GetTile(tpos);
-
-        if(tile)
-        {
-                Debug.Log("Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
-                DestroyTile();
-        }        
+        var tile = tileMap.GetTile(tpos);          
     }
 
     Vector3 MoveMouseCursor()
