@@ -28,6 +28,7 @@ public class TileSelector2D : MonoBehaviour
     internal float aimDistance = 1.0f;
 
     [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap;
+    [SerializeField] TileBase spikeTile, wallTile, bounceTile;
 
     Vector2 worldPoint;
     [SerializeField] TileMode m_TileMode = TileMode.None;
@@ -66,15 +67,23 @@ public class TileSelector2D : MonoBehaviour
                     DestroyTile();
                     break;
                 case TileMode.Bounce:
-                    ReplaceWithTile(bounceTileMap, tile);
+                    ReplaceWithTile(bounceTileMap, bounceTile);
                     break;
                 case TileMode.Spike:
-                    ReplaceWithTile(spikeTileMap, tile);
+                    ReplaceWithTile(spikeTileMap, spikeTile);
                     break;
                 case TileMode.Wall:
-                    ReplaceWithTile(wallTileMap, tile);
+                    ReplaceWithTile(wallTileMap, wallTile);
                     break;
             }
+        }
+        else
+        {
+            if(m_TileMode == TileMode.Wall)
+            {
+                ReplaceWithTile(wallTileMap, wallTile);
+            }
+            
         }
     }
 
@@ -133,7 +142,7 @@ public class TileSelector2D : MonoBehaviour
     void ReplaceWithTile(Tilemap _tilemap, TileBase tile)
     {
         var tpos = _tilemap.WorldToCell(worldPoint);
-
+        
         //if a tile from another tilemap is at the position, destroy it
 
 
