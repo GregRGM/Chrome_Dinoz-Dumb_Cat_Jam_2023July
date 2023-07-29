@@ -26,12 +26,12 @@ public class TileSelector2D : MonoBehaviour
     [SerializeField] float camTargetSpeed = .25f;
     internal Vector3 aimDirection;
     internal float aimDistance = 1.0f;
+    [SerializeField] TileMode m_TileMode = TileMode.None;
 
-    [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap;
+    [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap, backgroundTileMap;
     [SerializeField] TileBase spikeTile, wallTile, bounceTile;
 
     Vector2 worldPoint;
-    [SerializeField] TileMode m_TileMode = TileMode.None;
     float mouseDistance;
 
     private void Start()
@@ -41,6 +41,7 @@ public class TileSelector2D : MonoBehaviour
 
     private void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
+        tileMap = wallTileMap;
     }
     void OnPosition(InputValue value)
     {
@@ -53,38 +54,56 @@ public class TileSelector2D : MonoBehaviour
     void OnFire(InputValue value)
     {
         if (!playerMovement.GetIsAlive()) { return; }
-        var tpos = tileMap.WorldToCell(worldPoint);
+        // var tpos = tileMap.WorldToCell(worldPoint);
 
-        // Try to get a tile from cell position
-        var tile = tileMap.GetTile(tpos);
+        // // Try to get a tile from cell position
+        // var tile = tileMap.GetTile(tpos);         
 
-        if(tile)
+        // Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
+        
+        switch(m_TileMode)
         {
-            Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
-            switch(m_TileMode)
-            {
-                case TileMode.Destroy:
-                    DestroyTile();
-                    break;
-                case TileMode.Bounce:
-                    ReplaceWithTile(bounceTileMap, bounceTile);
-                    break;
-                case TileMode.Spike:
-                    ReplaceWithTile(spikeTileMap, spikeTile);
-                    break;
-                case TileMode.Wall:
-                    ReplaceWithTile(wallTileMap, wallTile);
-                    break;
-            }
-        }
-        else
-        {
-            if(m_TileMode == TileMode.Wall)
-            {
+            case TileMode.Destroy:
+                DestroyTile();
+                break;
+            case TileMode.Bounce:
+                ReplaceWithTile(bounceTileMap, bounceTile);
+                break;
+            case TileMode.Spike:
+                ReplaceWithTile(spikeTileMap, spikeTile);
+                break;
+            case TileMode.Wall:
                 ReplaceWithTile(wallTileMap, wallTile);
-            }
-            
+                break;
         }
+
+        // if(tile)
+        // {
+        //     Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
+        //     switch(m_TileMode)
+        //     {
+        //         case TileMode.Destroy:
+        //             DestroyTile();
+        //             break;
+        //         case TileMode.Bounce:
+        //             ReplaceWithTile(bounceTileMap, bounceTile);
+        //             break;
+        //         case TileMode.Spike:
+        //             ReplaceWithTile(spikeTileMap, spikeTile);
+        //             break;
+        //         case TileMode.Wall:
+        //             ReplaceWithTile(wallTileMap, wallTile);
+        //             break;
+        //     }
+        // }
+        // else
+        // {
+        //     if(m_TileMode == TileMode.Wall)
+        //     {
+        //         ReplaceWithTile(wallTileMap, wallTile);
+        //     }
+            
+        // }
     }
 
     // Update is called once per frame
@@ -128,10 +147,18 @@ public class TileSelector2D : MonoBehaviour
 
     public void DestroyTile()
     {
+        //Destroy the tile at the position on all tilemaps
         var tpos = tileMap.WorldToCell(worldPoint);
         tileMap.SetTile(tpos, null);
-        //tileMap.SetTile(tpos, null);
-        //tileMap.SetTile(tpos, null);
+
+        tpos = wallTileMap.WorldToCell(worldPoint);
+        wallTileMap.SetTile(tpos, null);
+
+        tpos = spikeTileMap.WorldToCell(worldPoint);
+        spikeTileMap.SetTile(tpos, null);
+        
+        tpos = bounceTileMap.WorldToCell(worldPoint);
+        bounceTileMap.SetTile(tpos, null);
     }
 
     public void SetTileMode(int mode)
@@ -139,17 +166,18 @@ public class TileSelector2D : MonoBehaviour
         m_TileMode = (TileMode)mode;
     }
 
-    void ReplaceWithTile(Tilemap _tilemap, TileBase tile)
+    void ReplaceWithTile(Tilemap _tileMap, TileBase tile)
     {
-        var tpos = _tilemap.WorldToCell(worldPoint);
-        
+        // var prevTileMap = get
+        DestroyTile();
+        var tpos = _tileMap.WorldToCell(worldPoint);
+        _tileMap.SetTile(tpos, tile);
+
+        // tileMap.SetTile(tpos, null);                
+        // tpos = _tilemap.WorldToCell(worldPoint);        
         //if a tile from another tilemap is at the position, destroy it
-
-
-        //Destroy current tile at position
-        _tilemap.SetTile(tpos, null);
+       
         //Replace with new tile
-        _tilemap.SetTile(tpos, tile);
     }
 
 
