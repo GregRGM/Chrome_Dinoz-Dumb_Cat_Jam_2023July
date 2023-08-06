@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidbody;
+    Collider2D myBodyCollider;
     
     void Start()
     {
@@ -15,12 +16,25 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         myRigidbody.velocity = new Vector2 (moveSpeed, 0f);
+        Die();
     }
 
     void OnTriggerExit2D(Collider2D other) 
     {
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
+    }
+
+    void Die()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        {
+            Destroy(gameObject);
+            // isAlive = false;
+            // myAnimator.SetTrigger("Dying");
+            // myRigidbody.velocity = deathKick;
+            // FindObjectOfType<GameSession>().ProcessPlayerDeath();
+        }
     }
 
     void FlipEnemyFacing()
