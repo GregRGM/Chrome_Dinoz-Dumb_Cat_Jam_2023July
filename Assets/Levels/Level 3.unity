@@ -31265,15 +31265,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.507025
+      value: -10.701239
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06361723
+      value: 0.5638008
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397569, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: orthographic size
-      value: 5.5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495810557105, guid: b6e293ff3fd84874d82cfdc2809f59d5, type: 3}
       propertyPath: m_AnimatedTarget
@@ -31410,6 +31410,14 @@ PrefabInstance:
       propertyPath: playerCameraFollow
       value: 
       objectReference: {fileID: 4474487495078291903}
+    - target: {fileID: 6302868859376234055, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.90625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302868859376234055, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.53125
+      objectReference: {fileID: 0}
     - target: {fileID: 8376202766541234324, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -31454,6 +31462,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376202766541234326, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 281229864, guid: 688dc1300f5a10e478e6b6bb3588a9fc, type: 3}
     - target: {fileID: 8376202766541234327, guid: 72c36442b1f04e64f8ae9f64eb00a0b9, type: 3}
       propertyPath: m_Name
       value: Player DCJ Variant
