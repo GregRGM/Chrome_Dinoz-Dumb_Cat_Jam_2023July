@@ -7,10 +7,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidbody;
     Collider2D myBodyCollider;
-    
+    [SerializeField] bool flipWhenEdge = true;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        myBodyCollider = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -21,6 +22,10 @@ public class EnemyMovement : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other) 
     {
+        if (!flipWhenEdge)
+        {
+            return;
+        }
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
     }
@@ -36,6 +41,7 @@ public class EnemyMovement : MonoBehaviour
             // FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
+
 
     void FlipEnemyFacing()
     {

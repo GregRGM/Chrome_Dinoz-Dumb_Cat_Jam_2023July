@@ -50,10 +50,24 @@ public class TileSelector2D : MonoBehaviour
 
         Debug.Log("Position: " + value.Get<Vector2>());
     }
+    
+    void OnScrollWheel()
+    {
+        //increment or decrement tile mode when scrolling
+        
+        int mode = (int)m_TileMode;
+        mode++;
+        if(mode > 3)
+        {
+            mode = 0;
+        }
+    }
 
     void OnFire(InputValue value)
     {
         if (!playerMovement.GetIsAlive()) { return; }
+
+        
         // var tpos = tileMap.WorldToCell(worldPoint);
 
         // // Try to get a tile from cell position
