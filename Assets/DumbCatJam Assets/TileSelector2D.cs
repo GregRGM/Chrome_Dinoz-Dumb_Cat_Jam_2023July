@@ -128,6 +128,39 @@ public class TileSelector2D : MonoBehaviour
         var tpos = tileMap.WorldToCell(worldPoint);
         // Try to get a tile from cell position
         var tile = tileMap.GetTile(tpos);          
+
+
+        // if(Input.GetAxis("Mouse ScrollWheel") != 0)
+        // {
+        //     int mode = (int)m_TileMode;
+        //     mode++;
+        //     if(mode > 3)
+        //     {
+        //         mode = 0;
+        //     }
+        //     m_TileMode = (TileMode)mode;
+            
+        // }
+        if(Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            int mode = (int)m_TileMode;
+            mode--;
+            if(mode < 0)
+            {
+                mode = 3;
+            }
+            m_TileMode = (TileMode)mode;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            int mode = (int)m_TileMode;
+            mode++;
+            if(mode > 3)
+            {
+                mode = 0;
+            }
+            m_TileMode = (TileMode)mode;
+        }
     }
 
     Vector3 MoveMouseCursor()
