@@ -31,7 +31,7 @@ public class TileSelector2D : MonoBehaviour
     internal float aimDistance = 1.0f;
     [SerializeField] TileMode m_TileMode = TileMode.None;
     [SerializeField] int m_TileChargesRemaining = 0, m_TileChargesMax = 20;
-    TextMeshProUGUI tileModeText;
+    TextMeshProUGUI tileModeText, tileChargesText;
     [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap, backgroundTileMap;
     [SerializeField] TileBase spikeTile, wallTile, bounceTile;
     
@@ -49,10 +49,14 @@ public class TileSelector2D : MonoBehaviour
 
         if(tileModeText == null)
             tileModeText = GameObject.Find("Tile Mode Text").GetComponent<TextMeshProUGUI>();
-        tileModeText.text = m_TileMode.ToString();
+        tileModeText.text = "Tile Mode: " + m_TileMode.ToString();        
 
         m_TileChargesRemaining = m_TileChargesMax;
         m_TileChargesRemaining = Mathf.Clamp(m_TileChargesRemaining, 0, m_TileChargesMax);
+        
+        if(tileChargesText == null)
+            tileChargesText = GameObject.Find("Tile Charges Text").GetComponent<TextMeshProUGUI>();
+        tileChargesText.text = "Tile Switches: " + m_TileChargesRemaining.ToString();
     }
     void OnPosition(InputValue value)
     {
@@ -85,7 +89,12 @@ public class TileSelector2D : MonoBehaviour
         // var tile = tileMap.GetTile(tpos);         
 
         // Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
-        
+        if(m_TileChargesRemaining <= 0)
+        {
+            Debug.Log("No more tile switches remaining");
+            return;
+        }
+
         switch(m_TileMode)
         {
             case TileMode.Destroy:

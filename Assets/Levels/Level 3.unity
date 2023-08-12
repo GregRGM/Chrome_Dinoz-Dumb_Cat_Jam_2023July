@@ -10248,7 +10248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tile Changes Remaining: '
+  m_text: 'Tile switches: 20'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e60175d640487cb4ba73f3618b31488e, type: 2}
   m_sharedMaterial: {fileID: 2686801188088640798, guid: e60175d640487cb4ba73f3618b31488e, type: 2}
