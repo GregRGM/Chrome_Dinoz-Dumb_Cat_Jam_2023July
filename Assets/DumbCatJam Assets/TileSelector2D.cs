@@ -4,6 +4,9 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+using TMPro;
+
 
 [RequireComponent(typeof(PlayerMovement))]
 
@@ -27,10 +30,11 @@ public class TileSelector2D : MonoBehaviour
     internal Vector3 aimDirection;
     internal float aimDistance = 1.0f;
     [SerializeField] TileMode m_TileMode = TileMode.None;
-
+    [SerializeField] int m_TileChargesRemaining = 0, m_TileChargesMax = 20;
+    TextMeshProUGUI tileModeText;
     [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap, backgroundTileMap;
     [SerializeField] TileBase spikeTile, wallTile, bounceTile;
-
+    
     Vector2 worldPoint;
     float mouseDistance;
 
@@ -42,6 +46,13 @@ public class TileSelector2D : MonoBehaviour
     private void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
         tileMap = wallTileMap;
+
+        if(tileModeText == null)
+            tileModeText = GameObject.Find("Tile Mode Text").GetComponent<TextMeshProUGUI>();
+        tileModeText.text = m_TileMode.ToString();
+
+        m_TileChargesRemaining = m_TileChargesMax;
+        m_TileChargesRemaining = Mathf.Clamp(m_TileChargesRemaining, 0, m_TileChargesMax);
     }
     void OnPosition(InputValue value)
     {
@@ -65,7 +76,7 @@ public class TileSelector2D : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!playerMovement.GetIsAlive()) { return; }
+        if (!playerMovement.GetIsAlive() ) { return; }
 
         
         // var tpos = tileMap.WorldToCell(worldPoint);
@@ -82,12 +93,15 @@ public class TileSelector2D : MonoBehaviour
                 break;
             case TileMode.Bounce:
                 ReplaceWithTile(bounceTileMap, bounceTile);
+                m_TileChargesRemaining--;
                 break;
             case TileMode.Spike:
                 ReplaceWithTile(spikeTileMap, spikeTile);
+                m_TileChargesRemaining--;
                 break;
             case TileMode.Wall:
                 ReplaceWithTile(wallTileMap, wallTile);
+                m_TileChargesRemaining--;
                 break;
         }
 
@@ -150,6 +164,7 @@ public class TileSelector2D : MonoBehaviour
                 mode = 3;
             }
             m_TileMode = (TileMode)mode;
+            tileModeText.text = m_TileMode.ToString();            
         }
         else if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
@@ -160,6 +175,7 @@ public class TileSelector2D : MonoBehaviour
                 mode = 0;
             }
             m_TileMode = (TileMode)mode;
+            tileModeText.text = m_TileMode.ToString();
         }
     }
 
@@ -206,6 +222,9 @@ public class TileSelector2D : MonoBehaviour
         
         tpos = bounceTileMap.WorldToCell(worldPoint);
         bounceTileMap.SetTile(tpos, null);
+
+        //Replenish the tiles remaining
+        //tilesRemaining++;
     }
 
     public void SetTileMode(int mode)
@@ -215,9 +234,19 @@ public class TileSelector2D : MonoBehaviour
 
     void ReplaceWithTile(Tilemap _tileMap, TileBase tile)
     {
+        //Check if a player or enemy is in the tile position, return if true
+        
+        
+
         // var prevTileMap = get
         DestroyTile();
         var tpos = _tileMap.WorldToCell(worldPoint);
+        //Get the current layer for player and enemy
+        var playerLayer = LayerMask.GetMask("Player", "Enemy");
+        if(Physics2D.OverlapCircle(worldPoint, 0.5f, playerLayer) != null)
+        {
+            return;
+        }
         _tileMap.SetTile(tpos, tile);
 
         // tileMap.SetTile(tpos, null);                
