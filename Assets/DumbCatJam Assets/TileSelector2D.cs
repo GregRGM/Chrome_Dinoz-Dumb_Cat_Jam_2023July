@@ -265,7 +265,12 @@ public class TileSelector2D : MonoBehaviour
         //Replace with new tile
     }
 
-
+    public void AddToCharges(int charges)
+    {
+        m_TileChargesRemaining += charges;
+        m_TileChargesRemaining = Mathf.Clamp(m_TileChargesRemaining, 0, m_TileChargesMax);
+        tileChargesText.text = "Tile Switches: " + m_TileChargesRemaining.ToString();
+    }
     /// <summary>
     /// Move the aiming crosshair based on aim angle
     /// </summary>
