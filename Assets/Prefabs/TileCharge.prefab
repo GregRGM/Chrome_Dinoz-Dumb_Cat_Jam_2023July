@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 570675226901578546}
   - component: {fileID: 6370628844230512495}
   - component: {fileID: 6905893508668060146}
-  - component: {fileID: 8020895416437121210}
   - component: {fileID: 6859355366301870046}
+  - component: {fileID: 505451917664989824}
   m_Layer: 14
   m_Name: TileCharge
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &570675226901578546
 SpriteRenderer:
@@ -144,20 +144,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8020895416437121210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6347667305075148468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da4e814a0ead0b4b8098f07d6dead2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinPickupSFX: {fileID: 8300000, guid: b7af5163b49e11343b124078f9bc888a, type: 3}
-  pointsForCoinPickup: 200
 --- !u!82 &6859355366301870046
 AudioSource:
   m_ObjectHideFlags: 0
@@ -254,3 +240,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &505451917664989824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347667305075148468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3715d6283701ea24ba672b2543e26110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupSFX: {fileID: 8300000, guid: b7af5163b49e11343b124078f9bc888a, type: 3}
+  charges: 10

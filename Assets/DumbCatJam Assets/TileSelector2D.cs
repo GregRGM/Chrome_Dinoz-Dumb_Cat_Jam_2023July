@@ -113,7 +113,7 @@ public class TileSelector2D : MonoBehaviour
                 m_TileChargesRemaining--;
                 break;
         }
-
+        tileChargesText.text = "Tile Switches: " + m_TileChargesRemaining.ToString();
         // if(tile)
         // {
         //     Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
