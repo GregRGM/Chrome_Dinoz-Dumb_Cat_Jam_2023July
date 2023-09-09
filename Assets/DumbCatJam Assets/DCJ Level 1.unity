@@ -13608,6 +13608,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 663158d9639231249919d8f9fbd3f4e1, type: 3}
+--- !u!1 &1226965259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8376202766541234327, guid: 0032d12863102c944af33c7c357032d8, type: 3}
+  m_PrefabInstance: {fileID: 8444976401721210392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1245979698
 GameObject:
   m_ObjectHideFlags: 0
@@ -32677,6 +32682,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8376202766541234324, guid: 0032d12863102c944af33c7c357032d8, type: 3}
   m_PrefabInstance: {fileID: 8444976401721210392}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1320068058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226965259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -191584462, guid: bb598dd41675c6348bee385a9e8c25bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  note: '--Vert Measurements-- Based on max tiles feet can reach top of. MaxVertSpeed
+    (-12,28f DOWN & UP) = 6.5 tiles; Jump Speed 20f = 3 tiles '
+  tags: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  show: 1
 --- !u!4 &1378173159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6229391455672694950, guid: 663158d9639231249919d8f9fbd3f4e1, type: 3}
@@ -33335,11 +33357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: 70d5c598910064e47805bc62c1ec5cac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.516886
+      value: -11.506494
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: 70d5c598910064e47805bc62c1ec5cac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.063614845
+      value: 0.06361723
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397569, guid: 70d5c598910064e47805bc62c1ec5cac, type: 3}
       propertyPath: orthographic size
@@ -33510,11 +33532,19 @@ PrefabInstance:
       objectReference: {fileID: 4474487495078291906}
     - target: {fileID: 4463620783197697324, guid: 0032d12863102c944af33c7c357032d8, type: 3}
       propertyPath: maxUpSpeed
-      value: 25
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4463620783197697324, guid: 0032d12863102c944af33c7c357032d8, type: 3}
       propertyPath: maxDownSpeed
-      value: -10
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463620783197697324, guid: 0032d12863102c944af33c7c357032d8, type: 3}
+      propertyPath: maxVertSpeed.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463620783197697324, guid: 0032d12863102c944af33c7c357032d8, type: 3}
+      propertyPath: maxVertSpeed.y
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 5235568052084242326, guid: 0032d12863102c944af33c7c357032d8, type: 3}
       propertyPath: tileMap
@@ -33623,5 +33653,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8376202766541234327, guid: 0032d12863102c944af33c7c357032d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1320068058}
   m_SourcePrefab: {fileID: 100100000, guid: 0032d12863102c944af33c7c357032d8, type: 3}

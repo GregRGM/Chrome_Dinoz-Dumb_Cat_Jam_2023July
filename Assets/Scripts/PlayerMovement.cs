@@ -7,11 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
+
+    //Since this uses Dynamic Rigidbody2D, it relies on a high negative value to simulate gravity and a low positive value to simulate jumping. Higher negative values will make the player fall faster AND allow the player to jump higher at positive values
+    [SerializeField] Vector2 maxVertSpeed = new Vector2 (-20f, 10f);
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathKick = new Vector2 (10f, 10f);
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
-    [SerializeField] float maxUpSpeed = 10f, maxDownSpeed = 10f;
     
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -39,12 +41,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!isAlive) { return; }
+        if(myRigidbody.velocity.y != 0)
+            ClampVerticalVelocity();
         Run();
         FlipSprite();
         ClimbLadder();
         Die();
-        if(myRigidbody.velocity.y != 0)
-            ClampVerticalVelocity();
     }
 
     void OnFire(InputValue value)
@@ -62,9 +64,8 @@ public class PlayerMovement : MonoBehaviour
     void ClampVerticalVelocity()
     {
         Vector2 velocity = myRigidbody.velocity;
-        velocity.y = Mathf.Clamp(velocity.y, maxDownSpeed, maxUpSpeed);
+        velocity.y = Mathf.Clamp(velocity.y, maxVertSpeed.x, maxVertSpeed.y);
         myRigidbody.velocity = velocity;
-
     }
 
     void OnJump(InputValue value)
@@ -82,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
     void Run()
     {
         Vector2 playerVelocity = new Vector2 (moveInput.x * runSpeed, myRigidbody.velocity.y);
-        myRigidbody.velocity = playerVelocity;
-
+        myRigidbody.velocity = playerVelocity;        
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
         myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
         // myRigidbody.velocity.y = 
