@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 deathKick = new Vector2 (10f, 10f);
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
+    [SerializeField] float maxUpSpeed = 10f, maxDownSpeed = 10f;
     
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -35,13 +36,15 @@ public class PlayerMovement : MonoBehaviour
         return isAlive;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isAlive) { return; }
         Run();
         FlipSprite();
         ClimbLadder();
         Die();
+        if(myRigidbody.velocity.y != 0)
+            ClampVerticalVelocity();
     }
 
     void OnFire(InputValue value)
@@ -56,7 +59,13 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
-    
+    void ClampVerticalVelocity()
+    {
+        Vector2 velocity = myRigidbody.velocity;
+        velocity.y = Mathf.Clamp(velocity.y, maxDownSpeed, maxUpSpeed);
+        myRigidbody.velocity = velocity;
+
+    }
 
     void OnJump(InputValue value)
     {
@@ -77,8 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
         myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
-        myRigidbody.velocity.y = 
-
+        // myRigidbody.velocity.y = 
     }
 
     void FlipSprite()
