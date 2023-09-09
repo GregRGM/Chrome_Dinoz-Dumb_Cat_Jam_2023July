@@ -184,9 +184,25 @@ PrefabInstance:
       value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4275568711953936455, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
+      propertyPath: wallTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f83a98e0a4e5fc44a6a70cbaab8005c, type: 2}
+    - target: {fileID: 4275568711953936455, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 5786787737835841840}
+    - target: {fileID: 4275568711953936455, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
+      propertyPath: spikeTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 12bb12b89a2f1fa4cb557c5dfa997fd1, type: 2}
+    - target: {fileID: 4275568711953936455, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
+      propertyPath: bounceTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 283d516220866f44bbca977f22a11e2a, type: 2}
+    - target: {fileID: 4275568711953936455, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
+      propertyPath: m_TileMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4275568711953936455, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
       propertyPath: lookAtObject
       value: 
@@ -198,6 +214,14 @@ PrefabInstance:
     - target: {fileID: 5151869573568463848, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623959111220081405, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
+      propertyPath: maxVertSpeed.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623959111220081405, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
+      propertyPath: maxVertSpeed.y
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 9104814243638410724, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
       propertyPath: m_Size.x

@@ -15,11 +15,11 @@ public class TileSelector2D : MonoBehaviour
 {
     enum TileMode
     {
-        Destroy,
-        Spike,
-        Wall,
+        None,
         Bounce, 
-        None
+        Destroy,
+        Wall,
+        Spike
     }
     public Transform crosshair;
     public PlayerMovement playerMovement;
@@ -30,9 +30,11 @@ public class TileSelector2D : MonoBehaviour
     internal Vector3 aimDirection;
     internal float aimDistance = 1.0f;
     [SerializeField] TileMode m_TileMode = TileMode.None;
-    [SerializeField] int m_TileChargesRemaining = 0, m_TileChargesMax = 20;
+    [SerializeField] int m_TileChargesRemaining = 0, m_TileChargesMax = 20, 
+    //Max Tile Mode Level is the highest level of tile mode that can be used. 0 = Destroy, 1 = Spike, 2 = Wall, 3 = Bounce
+    m_MaxTileModeLevel = 0;
     TextMeshProUGUI tileModeText, tileChargesText;
-    [SerializeField] Tilemap tileMap, spikeTileMap, wallTileMap, bounceTileMap, backgroundTileMap;
+    [SerializeField] Tilemap m_TileMap, m_SpikeTileMap, m_WallTileMap, m_BounceTileMap, m_BackgroundTileMap, m_StaticTileMap;
     [SerializeField] TileBase spikeTile, wallTile, bounceTile;
     
     Vector2 worldPoint;
@@ -45,7 +47,7 @@ public class TileSelector2D : MonoBehaviour
 
     private void Awake() {
         playerMovement = GetComponent<PlayerMovement>();
-        tileMap = wallTileMap;
+        m_TileMap = m_WallTileMap;
 
         if(tileModeText == null)
             tileModeText = GameObject.Find("Tile Mode Text").GetComponent<TextMeshProUGUI>();
@@ -72,7 +74,7 @@ public class TileSelector2D : MonoBehaviour
         
         int mode = (int)m_TileMode;
         mode++;
-        if(mode > 3)
+        if(mode > m_MaxTileModeLevel)
         {
             mode = 0;
         }
@@ -101,15 +103,15 @@ public class TileSelector2D : MonoBehaviour
                 DestroyTile();
                 break;
             case TileMode.Bounce:
-                ReplaceWithTile(bounceTileMap, bounceTile);
+                ReplaceWithTile(m_BounceTileMap, bounceTile);
                 m_TileChargesRemaining--;
                 break;
             case TileMode.Spike:
-                ReplaceWithTile(spikeTileMap, spikeTile);
+                ReplaceWithTile(m_SpikeTileMap, spikeTile);
                 m_TileChargesRemaining--;
                 break;
             case TileMode.Wall:
-                ReplaceWithTile(wallTileMap, wallTile);
+                ReplaceWithTile(m_WallTileMap, wallTile);
                 m_TileChargesRemaining--;
                 break;
         }
@@ -148,9 +150,9 @@ public class TileSelector2D : MonoBehaviour
     {
         worldPoint = MoveMouseCursor();
         // worldPoint = Camera.main.ScreenToWorldPoint();            
-        var tpos = tileMap.WorldToCell(worldPoint);
+        var tpos = m_TileMap.WorldToCell(worldPoint);
         // Try to get a tile from cell position
-        var tile = tileMap.GetTile(tpos);          
+        var tile = m_TileMap.GetTile(tpos);          
 
 
         // if(Input.GetAxis("Mouse ScrollWheel") != 0)
@@ -219,18 +221,26 @@ public class TileSelector2D : MonoBehaviour
 
     public void DestroyTile()
     {
+        //Check if the tile contains a static tile, if so, return
+        var tpos = m_StaticTileMap.WorldToCell(worldPoint);
+        if(m_StaticTileMap.GetTile(tpos) != null)
+        {
+            Debug.Log("Static Tile at position, cannot destroy");
+            return;
+        }
+
         //Destroy the tile at the position on all tilemaps
-        var tpos = tileMap.WorldToCell(worldPoint);
-        tileMap.SetTile(tpos, null);
+        tpos = m_TileMap.WorldToCell(worldPoint);
+        m_TileMap.SetTile(tpos, null);
 
-        tpos = wallTileMap.WorldToCell(worldPoint);
-        wallTileMap.SetTile(tpos, null);
+        tpos = m_WallTileMap.WorldToCell(worldPoint);
+        m_WallTileMap.SetTile(tpos, null);
 
-        tpos = spikeTileMap.WorldToCell(worldPoint);
-        spikeTileMap.SetTile(tpos, null);
+        tpos = m_SpikeTileMap.WorldToCell(worldPoint);
+        m_SpikeTileMap.SetTile(tpos, null);
         
-        tpos = bounceTileMap.WorldToCell(worldPoint);
-        bounceTileMap.SetTile(tpos, null);
+        tpos = m_BounceTileMap.WorldToCell(worldPoint);
+        m_BounceTileMap.SetTile(tpos, null);
 
         //Replenish the tiles remaining
         //tilesRemaining++;
@@ -244,7 +254,10 @@ public class TileSelector2D : MonoBehaviour
     void ReplaceWithTile(Tilemap _tileMap, TileBase tile)
     {
         //Check if a player or enemy is in the tile position, return if true
-        
+        if(_tileMap == m_StaticTileMap)
+        {
+            return;
+        }
         
 
         // var prevTileMap = get
