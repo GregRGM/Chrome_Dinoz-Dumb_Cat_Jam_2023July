@@ -28,7 +28,7 @@ public class TileSelector2D : MonoBehaviour
     public float cameraOffsetDistance = .35f;
     [SerializeField] float camTargetSpeed = .25f;
     internal Vector3 aimDirection;
-    internal float aimDistance = 1.0f;
+    [SerializeField] internal float aimDistance = 1.0f;
     [SerializeField] TileMode m_TileMode = TileMode.None;
     [SerializeField] int m_TileChargesRemaining = 0, m_TileChargesMax = 20, 
     //Max Tile Mode Level is the highest level of tile mode that can be used. 0 = Destroy, 1 = Spike, 2 = Wall, 3 = Bounce
@@ -192,9 +192,17 @@ public class TileSelector2D : MonoBehaviour
 
     Vector3 MoveMouseCursor()
     {
+        mouseDistance = Vector2.Distance(worldPoint, transform.position);
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10;
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        //Clamp mouse world position between player and aimDistance
+        mouseWorldPos = Vector3.ClampMagnitude(mouseWorldPos - transform.position, aimDistance) + transform.position;
+
+        /* //Keep mouse cursor at aimDistance from player
+        var facingDirection = (mouseWorldPos - transform.position).normalized;
+        mouseWorldPos = transform.position + facingDirection * aimDistance;
+*/
         crosshair.transform.position = mouseWorldPos;
 
         return mouseWorldPos;

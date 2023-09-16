@@ -44867,11 +44867,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: 70d5c598910064e47805bc62c1ec5cac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.5565195
+      value: -11.555039
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397438, guid: 70d5c598910064e47805bc62c1ec5cac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.527468
+      value: 1.4732108
       objectReference: {fileID: 0}
     - target: {fileID: 4474487495595397569, guid: 70d5c598910064e47805bc62c1ec5cac, type: 3}
       propertyPath: orthographic size
@@ -45067,6 +45067,10 @@ PrefabInstance:
     - target: {fileID: 5235568052084242326, guid: 0032d12863102c944af33c7c357032d8, type: 3}
       propertyPath: m_TileMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235568052084242326, guid: 0032d12863102c944af33c7c357032d8, type: 3}
+      propertyPath: aimDistance
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5235568052084242326, guid: 0032d12863102c944af33c7c357032d8, type: 3}
       propertyPath: wallTileMap

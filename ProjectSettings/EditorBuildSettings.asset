@@ -5,14 +5,23 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Level 1.unity
     guid: 2ef369e80df6fe342b022cbfbc158020
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Level 2.unity
     guid: e134fd71dfbdf4a40985cb2e84dd82ad
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Level 3.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/DumbCatJam Assets/DCJ Level 1.unity
+    guid: 058ce4714f8808f4c850cdab0bb7595c
+  - enabled: 1
+    path: Assets/DumbCatJam Assets/Scenes/DCJ Level 2.unity
+    guid: e5e6070edeee98c4c980f25404f6b349
+  - enabled: 0
+    path: Assets/DumbCatJam Assets/Scenes/DCJ Level 3.unity
+    guid: 95636d971f6658343bd96e1db6bbaa1a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f005394ccca97f0499a18ffb1ec3bc41, type: 2}
