@@ -42,14 +42,17 @@ public class Movement : MonoBehaviour
         FlipFacing();
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter2D(Collider other) {
         if (other.gameObject.GetComponent<PlayerMovement>() != null)
         {
+            Debug.Log("Player Movement Found");
             if(other.gameObject.GetComponent<PlayerMovement>().GetIsBoosting())
                 Destroy(gameObject, 0.1f);
         }
         else if(other.gameObject.GetComponent<Movement>() != null)
         {
+            Debug.Log("Enemy Movement Found");
+
             if(other.gameObject.GetComponent<Movement>().GetIsBoosting())
                 Destroy(gameObject, 0.1f);
         }
