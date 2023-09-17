@@ -19,6 +19,7 @@ public class TileSelector2D : MonoBehaviour
         Bounce, 
         Destroy,
         Wall,
+        Booster,
         Spike
     }
     public Transform crosshair;
@@ -34,8 +35,8 @@ public class TileSelector2D : MonoBehaviour
     //Max Tile Mode Level is the highest level of tile mode that can be used. 0 = Destroy, 1 = Spike, 2 = Wall, 3 = Bounce
     m_MaxTileModeLevel = 0;
     TextMeshProUGUI tileModeText, tileChargesText;
-    [SerializeField] Tilemap m_TileMap, m_SpikeTileMap, m_WallTileMap, m_BounceTileMap, m_BackgroundTileMap, m_StaticTileMap;
-    [SerializeField] TileBase spikeTile, wallTile, bounceTile;
+    [SerializeField] Tilemap m_TileMap, m_SpikeTileMap, m_WallTileMap, m_BounceTileMap, m_BoostTileMap, m_BackgroundTileMap, m_StaticTileMap;
+    [SerializeField] TileBase spikeTile, wallTile, boostTile, bounceTile;
     
     Vector2 worldPoint;
     float mouseDistance;
@@ -82,7 +83,7 @@ public class TileSelector2D : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!playerMovement.GetIsAlive() ) { return; }
+        if (!playerMovement.GetIsAlive() || !playerMovement.GetIsAirborne()) { return; }
 
         
         // var tpos = tileMap.WorldToCell(worldPoint);
@@ -106,8 +107,12 @@ public class TileSelector2D : MonoBehaviour
                 ReplaceWithTile(m_BounceTileMap, bounceTile);
                 m_TileChargesRemaining--;
                 break;
-            case TileMode.Spike:
-                ReplaceWithTile(m_SpikeTileMap, spikeTile);
+            // case TileMode.Spike:
+            //     ReplaceWithTile(m_SpikeTileMap, spikeTile);
+            //     m_TileChargesRemaining--;
+            //     break;
+            case TileMode.Booster:
+                ReplaceWithTile(m_BoostTileMap, boostTile);
                 m_TileChargesRemaining--;
                 break;
             case TileMode.Wall:
@@ -244,8 +249,8 @@ public class TileSelector2D : MonoBehaviour
         tpos = m_WallTileMap.WorldToCell(worldPoint);
         m_WallTileMap.SetTile(tpos, null);
 
-        tpos = m_SpikeTileMap.WorldToCell(worldPoint);
-        m_SpikeTileMap.SetTile(tpos, null);
+        // tpos = m_SpikeTileMap.WorldToCell(worldPoint);
+        // m_SpikeTileMap.SetTile(tpos, null);
         
         tpos = m_BounceTileMap.WorldToCell(worldPoint);
         m_BounceTileMap.SetTile(tpos, null);
@@ -262,11 +267,10 @@ public class TileSelector2D : MonoBehaviour
     void ReplaceWithTile(Tilemap _tileMap, TileBase tile)
     {
         //Check if a player or enemy is in the tile position, return if true
-        if(_tileMap == m_StaticTileMap)
+        if(_tileMap == m_StaticTileMap || _tileMap == m_SpikeTileMap)
         {
             return;
-        }
-        
+        }        
 
         // var prevTileMap = get
         DestroyTile();

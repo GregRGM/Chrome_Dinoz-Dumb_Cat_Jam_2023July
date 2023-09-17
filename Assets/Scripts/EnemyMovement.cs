@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidbody;
     Collider2D myBodyCollider;
     [SerializeField] bool flipWhenEdge = true;
+
+    bool isAlive = true, isBoosting = false;
+
+    public void ToggleBoosting(bool _b)
+    {
+        isBoosting = _b;
+    }
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myBodyCollider = GetComponent<Collider2D>();
+    }
+
+    public bool GetIsBoosting()
+    {
+        return isBoosting;
     }
 
     void Update()
@@ -27,7 +39,20 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
         moveSpeed = -moveSpeed;
-        FlipEnemyFacing();
+        FlipFacing();
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<PlayerMovement>() != null)
+        {
+            if(other.gameObject.GetComponent<PlayerMovement>().GetIsBoosting())
+                Destroy(gameObject, 0.1f);
+        }
+        else if(other.gameObject.GetComponent<Movement>() != null)
+        {
+            if(other.gameObject.GetComponent<Movement>().GetIsBoosting())
+                Destroy(gameObject, 0.1f);
+        }
     }
 
     void Die()
@@ -43,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-    void FlipEnemyFacing()
+    void FlipFacing()
     {
         transform.localScale = new Vector2 (-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
     }

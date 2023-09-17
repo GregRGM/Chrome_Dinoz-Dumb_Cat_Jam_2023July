@@ -22,7 +22,12 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D myFeetCollider;
     float gravityScaleAtStart;
 
-    bool isAlive = true;
+    bool isAlive = true, isAirborne = false, isBoosting = false;
+
+    public void ToggleBoosting(bool _b)
+    {
+        isBoosting = _b;
+    }
 
     void Start()
     {
@@ -38,12 +43,29 @@ public class PlayerMovement : MonoBehaviour
         return isAlive;
     }
 
+    public bool GetIsAirborne()
+    {
+        return isAirborne;
+    }
+public bool GetIsBoosting()
+    {
+        return isBoosting;
+    }
     void FixedUpdate()
     {
         if (!isAlive) { return; }
         if(myRigidbody.velocity.y != 0)
+        {    
+            isAirborne = true;
             ClampVerticalVelocity();
+        }
+        else
+        {
+            isAirborne = false;
+        }
         Run();
+        if(isBoosting)
+            Boost();
         FlipSprite();
         ClimbLadder();
         Die();
@@ -118,8 +140,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards")))
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards"))  )
         {
+            if(isBoosting && myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+            {
+                return;
+            }
+
             isAlive = false;
             myAnimator.SetTrigger("Dying");
             myRigidbody.velocity = deathKick;
@@ -127,4 +154,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Boost()
+    {
+        //isBoosting = true;
+        GetComponent<Rigidbody2D>().gravityScale = 0f;
+        myAnimator.SetBool("isBoosting", true);
+        Vector2 playerVelocity = new Vector2 (moveInput.x * runSpeed * 5f, 0);
+        myRigidbody.velocity = playerVelocity;    
+        //GetComponent<Rigidbody2D>().velocity += new Vector2 ((jumpSpeed * 2), 0);
+    }
+
+    public void StopBoost()
+    {
+        isBoosting = false;
+        // myAnimator.SetBool("isBoosting", false);
+        GetComponent<Rigidbody2D>().gravityScale = gravityScaleAtStart;
+    }    
 }
