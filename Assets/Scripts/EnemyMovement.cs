@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ludiq.Peek;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidbody;
     Collider2D myBodyCollider;
     [SerializeField] bool flipWhenEdge = true;
+    GameObject collidedObject = null;
 
     bool isAlive = true, isBoosting = false;
 
@@ -28,48 +30,71 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        myRigidbody.velocity = new Vector2 (moveSpeed, 0f);
+        Boost();
+        if(!isBoosting)
+            myRigidbody.velocity = new Vector2 (moveSpeed, 0f);
+        
         Die();
     }
 
     void OnTriggerExit2D(Collider2D other) 
     {
-        if (!flipWhenEdge)
+        if (!flipWhenEdge || 
+            other.gameObject.layer == LayerMask.GetMask("Effector") ||
+            isBoosting)
         {
             return;
         }
+        
         moveSpeed = -moveSpeed;
         FlipFacing();
     }
 
-    private void OnTriggerEnter2D(Collider other) {
-        if (other.gameObject.GetComponent<PlayerMovement>() != null)
+    private void OnTriggerEnter2D(Collider2D other) {
+        collidedObject = other.gameObject;
+        if (collidedObject.GetComponent<PlayerMovement>() != null)
         {
             Debug.Log("Player Movement Found");
             if(other.gameObject.GetComponent<PlayerMovement>().GetIsBoosting())
-                Destroy(gameObject, 0.1f);
+                Destroy(gameObject);
         }
-        else if(other.gameObject.GetComponent<Movement>() != null)
+        else if(collidedObject.GetComponent<EnemyMovement>() != null)
         {
             Debug.Log("Enemy Movement Found");
 
-            if(other.gameObject.GetComponent<Movement>().GetIsBoosting())
-                Destroy(gameObject, 0.1f);
+            if(collidedObject.GetComponent<EnemyMovement>().GetIsBoosting())
+                Destroy(gameObject);
         }
     }
 
     void Die()
     {
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Hazards")) || 
+            myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
         {
-            Destroy(gameObject);
-            // isAlive = false;
+            isAlive = false;
+            myRigidbody.gravityScale = 0f;
+            myRigidbody.velocity = new Vector2 (0f, 0f);
+            GetComponent<SpriteRenderer>().enabled = false;
+            myBodyCollider.enabled = false;
+            GetComponent<EnemyMovement>().enabled = false;
+            
+            //Destroy(gameObject);
             // myAnimator.SetTrigger("Dying");
             // myRigidbody.velocity = deathKick;
             // FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
-
+    public void Boost()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Effector")) )
+        {
+            isBoosting = true;
+            GetComponent<Rigidbody2D>().gravityScale = 0f;
+            Vector2 playerVelocity = new Vector2 (moveSpeed * 5f, 0);
+            myRigidbody.velocity = playerVelocity;    
+        }
+    }
 
     void FlipFacing()
     {

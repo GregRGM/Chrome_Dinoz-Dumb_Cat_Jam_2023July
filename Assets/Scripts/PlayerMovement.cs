@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 deathKick = new Vector2 (10f, 10f);
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
+    [SerializeField] bool canDie = true;
     
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -142,7 +143,7 @@ public bool GetIsBoosting()
     {
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards"))  )
         {
-            if(isBoosting && myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+            if((isBoosting && myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies"))) || !canDie)
             {
                 return;
             }

@@ -85,12 +85,10 @@ public class TileSelector2D : MonoBehaviour
     {
         if (!playerMovement.GetIsAlive() || !playerMovement.GetIsAirborne()) { return; }
 
-        
         // var tpos = tileMap.WorldToCell(worldPoint);
 
         // // Try to get a tile from cell position
         // var tile = tileMap.GetTile(tpos);         
-
         // Debug.Log("Clicking Tile: " + tile.name + " at " + tpos + "with world point " + worldPoint);
         if(m_TileChargesRemaining <= 0)
         {
