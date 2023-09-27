@@ -199,6 +199,22 @@ PrefabInstance:
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5623959111220081405, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 3240574135494856230, guid: 0032d12863102c944af33c7c357032d8, type: 3}
+    - target: {fileID: 5623959111220081405, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 5450244551410949440, guid: 29fd2849314cbed4498b196bb75aa80e, type: 3}
+    - target: {fileID: 5623959111220081405, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
+      propertyPath: maxVertSpeed.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623959111220081405, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
+      propertyPath: maxVertSpeed.y
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 9104814243638410724, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
       propertyPath: m_Size.x
       value: 0.6943226
