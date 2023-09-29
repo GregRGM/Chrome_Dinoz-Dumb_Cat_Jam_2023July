@@ -145,8 +145,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030461311, y: -0.075451314}
-  m_Size: {x: 0.5614872, y: 0.8490974}
+  m_Offset: {x: -0.096879005, y: -0.06531352}
+  m_Size: {x: 0.6943226, y: 1.3823072}
   m_Direction: 0
 --- !u!50 &6987328839990031362
 Rigidbody2D:
@@ -219,10 +219,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 7
   jumpSpeed: 20
+  maxVertSpeed: {x: -20, y: 10}
   climbSpeed: 5
   deathKick: {x: 20, y: 20}
   bullet: {fileID: 5450244551410949440, guid: 29fd2849314cbed4498b196bb75aa80e, type: 3}
   gun: {fileID: 6847005739859954167}
+  canDie: 1
 --- !u!114 &4275568711953936455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,16 +243,21 @@ MonoBehaviour:
   lookAtObject: {fileID: 0}
   cameraOffsetDistance: 0.35
   camTargetSpeed: 0.25
+  aimDistance: 1
   m_TileMode: 4
   m_TileChargesRemaining: 0
   m_TileChargesMax: 20
-  tileMap: {fileID: 0}
-  spikeTileMap: {fileID: 0}
-  wallTileMap: {fileID: 0}
-  bounceTileMap: {fileID: 0}
-  backgroundTileMap: {fileID: 0}
+  m_MaxTileModeLevel: 0
+  m_TileMap: {fileID: 0}
+  m_SpikeTileMap: {fileID: 0}
+  m_WallTileMap: {fileID: 0}
+  m_BounceTileMap: {fileID: 0}
+  m_BoostTileMap: {fileID: 0}
+  m_BackgroundTileMap: {fileID: 0}
+  m_StaticTileMap: {fileID: 0}
   spikeTile: {fileID: 0}
   wallTile: {fileID: 0}
+  boostTile: {fileID: 0}
   bounceTile: {fileID: 0}
 --- !u!61 &2631773049785510294
 BoxCollider2D:

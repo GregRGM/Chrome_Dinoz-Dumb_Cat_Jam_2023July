@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -70,6 +71,25 @@ public bool GetIsBoosting()
         FlipSprite();
         ClimbLadder();
         Die();
+    }
+
+    void OnRestart(InputValue value)
+    {
+        ReloadScene();
+    }
+    void ReloadScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+    void OnPause(InputValue value)
+    {
+        QuitToMenu();
+    }
+
+void QuitToMenu()
+    {
+        SceneManager.LoadScene("StartTemp");
     }
 
     void OnFire(InputValue value)

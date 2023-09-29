@@ -307,22 +307,6 @@ PrefabInstance:
       propertyPath: maxVertSpeed.y
       value: 33
       objectReference: {fileID: 0}
-    - target: {fileID: 9104814243638410724, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
-      propertyPath: m_Size.x
-      value: 0.6943226
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104814243638410724, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3176568
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104814243638410724, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.096879005
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104814243638410724, guid: ae67c78a3f464904bb123eb0065c171f, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.03298831
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

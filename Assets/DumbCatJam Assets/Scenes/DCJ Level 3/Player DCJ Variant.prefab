@@ -188,13 +188,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8f83a98e0a4e5fc44a6a70cbaab8005c, type: 2}
     - target: {fileID: 4275568711953936455, guid: 227c0fbd6c1ef984ba2906b068e9a946, type: 3}
+      propertyPath: boostTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 7dfe6c1af21834949a3e445147064c1d, type: 2}
+    - target: {fileID: 4275568711953936455, guid: 227c0fbd6c1ef984ba2906b068e9a946, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 5786787737835841840}
-    - target: {fileID: 4275568711953936455, guid: 227c0fbd6c1ef984ba2906b068e9a946, type: 3}
-      propertyPath: spikeTile
-      value: 
-      objectReference: {fileID: 11400000, guid: 12bb12b89a2f1fa4cb557c5dfa997fd1, type: 2}
     - target: {fileID: 4275568711953936455, guid: 227c0fbd6c1ef984ba2906b068e9a946, type: 3}
       propertyPath: bounceTile
       value: 

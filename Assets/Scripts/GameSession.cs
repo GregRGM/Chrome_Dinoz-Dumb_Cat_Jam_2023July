@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameSession : MonoBehaviour
 {
@@ -56,6 +58,27 @@ public class GameSession : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
         livesText.text = playerLives.ToString();
+    }
+
+    void ReloadScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    void OnRestart(InputValue value)
+    {
+        ReloadScene();
+    }
+
+    void OnPause(InputValue value)
+    {
+        QuitToMenu();
+    }
+
+    void QuitToMenu()
+    {
+        SceneManager.LoadScene("StartTemp");
     }
 
     void ResetGameSession()

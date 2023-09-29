@@ -69,21 +69,21 @@ public class TileSelector2D : MonoBehaviour
         Debug.Log("Position: " + value.Get<Vector2>());
     }
     
-    void OnScrollWheel()
-    {
-        //increment or decrement tile mode when scrolling
+    // void OnScrollWheel()
+    // {
+    //     //increment or decrement tile mode when scrolling
         
-        int mode = (int)m_TileMode;
-        mode++;
-        if(mode > m_MaxTileModeLevel)
-        {
-            mode = 0;
-        }
-    }
+    //     int mode = (int)m_TileMode;
+    //     mode++;
+    //     if(mode > m_MaxTileModeLevel)
+    //     {
+    //         mode = 0;
+    //     }
+    // }
 
     void OnFire(InputValue value)
     {
-        if (!playerMovement.GetIsAlive() || !playerMovement.GetIsAirborne()) { return; }
+        if (!playerMovement.GetIsAlive() /* || playerMovement.GetIsAirborne() */) { return; }
 
         // var tpos = tileMap.WorldToCell(worldPoint);
 
@@ -148,6 +148,14 @@ public class TileSelector2D : MonoBehaviour
         // }
     }
 
+
+    void OnFire2(InputValue value)
+    {
+        if(value.isPressed)
+            DestroyTile();               
+        
+        tileChargesText.text = "Tile Switches: " + m_TileChargesRemaining.ToString();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -175,7 +183,7 @@ public class TileSelector2D : MonoBehaviour
             mode--;
             if(mode < 0)
             {
-                mode = 3;
+                mode = m_MaxTileModeLevel;
             }
             m_TileMode = (TileMode)mode;
             tileModeText.text = m_TileMode.ToString();            
@@ -184,7 +192,7 @@ public class TileSelector2D : MonoBehaviour
         {
             int mode = (int)m_TileMode;
             mode++;
-            if(mode > 3)
+            if(mode > m_MaxTileModeLevel)
             {
                 mode = 0;
             }
@@ -252,6 +260,9 @@ public class TileSelector2D : MonoBehaviour
         
         tpos = m_BounceTileMap.WorldToCell(worldPoint);
         m_BounceTileMap.SetTile(tpos, null);
+        
+        tpos = m_BoostTileMap.WorldToCell(worldPoint);
+        m_BoostTileMap.SetTile(tpos, null);
 
         //Replenish the tiles remaining
         //tilesRemaining++;
