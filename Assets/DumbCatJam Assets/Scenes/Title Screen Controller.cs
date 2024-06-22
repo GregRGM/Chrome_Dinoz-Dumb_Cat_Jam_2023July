@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +13,7 @@ public class CriticalTrialsTitleScreen : MonoBehaviour {
     {
         if(logoSet != null)
             logoSet.SetActive(true);
+        else
         titleSet.SetActive(false);
         yield return new WaitForSeconds(2.0f);
         logoSet.SetActive(false);
